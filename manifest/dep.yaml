@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-dep
+  labels:
+    app: hello
+    app.com: raging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+      app.com: raging
+  template:
+    metadata:
+      labels:
+        app: hello
+        app.com: raging
+    spec:
+      containers:
+      - name: hello
+        image: hello/hello:v1
+        ports:
+          - name: http
+            containerPort: 8080
+            protocol: TCP
